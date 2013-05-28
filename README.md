@@ -1,4 +1,4 @@
-# Socket Listener
+# Notifications helper
 
 Helper library for interaction with cozy-home notification API
 
