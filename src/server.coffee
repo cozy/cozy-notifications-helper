@@ -1,9 +1,8 @@
 Client = require('request-json').JsonClient
 
-class NotificationsHelper
+module.exports = class NotificationsHelper
 
-    constructor: (@app, port=9103)->
-
+    constructor: (@app, port=9103) ->
         @client = new Client "http://localhost:#{port}/"
 
     createTemporary: (params, callback) ->
@@ -11,9 +10,8 @@ class NotificationsHelper
         @client.post 'notifications', params, callback
 
     createOrUpdatePersistent: (ref, params, callback) ->
-        params.ref = ref
         callback ?= ->
-        @client.put 'notifications/#{@app}/#{ref}', params, callback
+        @client.put "notifications/#{@app}/#{ref}", params, callback
 
     destroy: (ref, callback) ->
         callback ?= ->

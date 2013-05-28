@@ -17,5 +17,8 @@
   "dependencies": {
     "request-json": "0.3.6"
   },
-  "readmeFilename": "README.md"
+  "readmeFilename": "README.md",
+  "devDependencies": {
+    "chai": "~1.6.0"
+  }
 }
