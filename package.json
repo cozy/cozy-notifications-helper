@@ -1,0 +1,21 @@
+{
+  "name": "cozy-notifications-helper",
+  "version": "0.0.1",
+  "description": "",
+  "main": "src/server.coffee",
+  "scripts": {
+    "test": "cake tests",
+    "prepublish": "cake build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mycozycloud/cozy-notifications-helper"
+  },
+  "author": {
+    "name": "Romain"
+  },
+  "dependencies": {
+    "request-json": "0.3.6"
+  },
+  "readmeFilename": "README.md"
+}
