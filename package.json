@@ -2,7 +2,7 @@
   "name": "cozy-notifications-helper",
   "version": "0.0.2",
   "description": "",
-  "main": "src/server.coffee",
+  "main": "lib/server.js",
   "scripts": {
     "test": "cake tests",
     "prepublish": "cake build"
