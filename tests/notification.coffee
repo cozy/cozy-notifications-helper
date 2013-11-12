@@ -1,8 +1,7 @@
 should = require('chai').should()
 Client = require('request-json').JsonClient
-clientDS = new Client "http://localhost:9101/"
-
 helpers = require './helpers'
+clientDS = helpers.client
 
 NotificationManager = require '../src/notification-manager'
 

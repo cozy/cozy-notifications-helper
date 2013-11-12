@@ -1,12 +1,16 @@
-Client = require('request-json').JsonClient
-client = new Client "http://localhost:9101/"
-
 should = require('chai').should()
-
 helpers = {}
 
+Client = require('request-json').JsonClient
+helpers.client = new Client "http://localhost:9101/"
+
+# Data System authentification
+authentifiedEnvs = ['test', 'production']
+if process.env.NODE_ENV in authentifiedEnvs
+    helpers.client.setBasicAuth process.env.NAME, process.env.TOKEN
+
 helpers.cleanDb = (done) ->
-    client.put 'request/notification/all/destroy/', {}, (err, res, body) ->
+    helpers.client.put 'request/notification/all/destroy/', {}, (err, res, body) ->
         done()
 
 helpers.validateNotificationFormat = (notif) ->
