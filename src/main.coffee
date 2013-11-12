@@ -1,5 +1,3 @@
-Client = require('request-json').JsonClient
-
 NotificationManager = require './notification-manager'
 
 module.exports = class NotificationsHelper

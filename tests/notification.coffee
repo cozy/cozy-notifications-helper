@@ -144,7 +144,7 @@ describe "Notification Manager", ->
                         app: 'randomapp'
                         url: '/'
                     publishDate: Date.now()
-                issues = NotificationManager.validate notification
+                issues = NotificationManager._validate notification
                 issues.length.should.equal 0
 
         describe "When a persistent notification with all fields is validated", ->
@@ -158,7 +158,7 @@ describe "Notification Manager", ->
                     publishDate: Date.now()
                     app: 'randomapp'
                     ref: 'random ref'
-                issues = NotificationManager.validate notification
+                issues = NotificationManager._validate notification
                 issues.length.should.equal 0
 
         describe "When a notification with an empty text field or without text field is validated", ->
@@ -170,7 +170,7 @@ describe "Notification Manager", ->
                         app: 'randomapp'
                         url: '/'
                     publishDate: Date.now()
-                issues = NotificationManager.validate notification
+                issues = NotificationManager._validate notification
                 issues.length.should.equal 1
                 issues[0].should.equal 'text'
 
@@ -180,7 +180,7 @@ describe "Notification Manager", ->
                         app: 'randomapp'
                         url: '/'
                     publishDate: Date.now()
-                issues = NotificationManager.validate notification
+                issues = NotificationManager._validate notification
                 issues.length.should.equal 1
                 issues[0].should.equal 'text'
 
@@ -193,7 +193,7 @@ describe "Notification Manager", ->
                         app: 'randomapp'
                         url: '/'
                     publishDate: Date.now()
-                issues = NotificationManager.validate notification
+                issues = NotificationManager._validate notification
                 issues.length.should.equal 1
                 issues[0].should.equal 'type'
 
@@ -205,7 +205,7 @@ describe "Notification Manager", ->
                     resource:
                         app: 'randomapp'
                         url: '/'
-                issues = NotificationManager.validate notification
+                issues = NotificationManager._validate notification
                 issues[0].should.equal 'publishDate'
 
         describe "When a notification without a resource field is validated", ->
@@ -214,7 +214,7 @@ describe "Notification Manager", ->
                     text: "random text"
                     type: 'temporary'
                     publishDate: Date.now()
-                issues = NotificationManager.validate notification
+                issues = NotificationManager._validate notification
                 issues.length.should.equal 1
                 issues[0].should.equal 'resource'
 
@@ -226,7 +226,7 @@ describe "Notification Manager", ->
                     publishDate: Date.now()
                     resource:
                         app: 'randomapp'
-                issues = NotificationManager.validate notification
+                issues = NotificationManager._validate notification
                 issues.length.should.equal 1
                 issues[0].should.equal 'resource.url'
 
@@ -240,7 +240,7 @@ describe "Notification Manager", ->
                         url: '/'
                     publishDate: Date.now()
                     ref: 'random ref'
-                issues = NotificationManager.validate notification
+                issues = NotificationManager._validate notification
                 issues.length.should.equal 1
                 issues[0].should.equal 'app (persistent)'
 
@@ -254,7 +254,7 @@ describe "Notification Manager", ->
                         url: '/'
                     publishDate: Date.now()
                     app: 'randomapp'
-                issues = NotificationManager.validate notification
+                issues = NotificationManager._validate notification
                 issues.length.should.equal 1
                 issues[0].should.equal 'ref (persistent)'
 
@@ -267,7 +267,7 @@ describe "Notification Manager", ->
                     resource:
                         app: 'randomapp'
                         url: '/'
-                notification = NotificationManager.normalize notification
+                notification = NotificationManager._normalize notification
                 notification.should.have.property 'publishDate'
 
         describe "When a notification without a resource field is normalized", ->
@@ -277,7 +277,7 @@ describe "Notification Manager", ->
                     type: 'temporary'
                     publishDate: Date.now()
 
-                notification = NotificationManager.normalize notification
+                notification = NotificationManager._normalize notification
                 notification.should.have.property 'resource'
                 notification.resource.should.have.property('url').equal '/'
 
