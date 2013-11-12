@@ -1,5 +1,7 @@
 Client = require('request-json').JsonClient
 
+NotificationManager = require './notification-manager'
+
 module.exports = class NotificationsHelper
 
     constructor: (@app, port=9103) ->
@@ -7,12 +9,22 @@ module.exports = class NotificationsHelper
 
     createTemporary: (params, callback) ->
         callback ?= ->
-        @client.post 'notifications', params, callback
+        NotificationManager.manage params, 'temporary', callback
 
     createOrUpdatePersistent: (ref, params, callback) ->
         callback ?= ->
-        @client.put "notifications/#{@app}/#{ref}", params, callback
+        params.ref = ref
+        if params?.resource?.app?
+            params.app = @app
+        else if @app?
+            params.app = params.resource.app
+
+        NotificationManager.manage params, 'persistent', callback
 
     destroy: (ref, callback) ->
         callback ?= ->
-        @client.del "notifications/#{@app}/#{ref}", callback
+        params =
+            ref: ref
+            app: @app if @app?
+        NotificationManager.destroy params, callback
+
