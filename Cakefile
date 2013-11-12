@@ -62,6 +62,8 @@ runTests = (fileList) ->
             console.log stdout
             console.log stderr
 
+            process.exit 1 if err? or stderr?
+
 task "lint", "Run coffeelint on source files", ->
 
     lintFiles = walk '.',  ['node_modules', 'tests']
