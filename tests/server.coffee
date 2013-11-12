@@ -1,37 +1,51 @@
 NotificationsHelper = require '../src/server.coffee'
 expect = require('chai').expect
+should = require('chai').should()
 
-console.log "START HOME BEFORE TESTS"
+helpers = require './helpers'
 
-describe 'notifications helper', ->
+describe 'Notifications Helper (interface)', ->
 
     it 'should not throw when instanciated', ->
         @nh = new NotificationsHelper 'appname'
 
-    describe 'createTemporary', (done) ->
+    describe 'Create temporary notification', (done) ->
+
+        before helpers.cleanDb
+        after helpers.cleanDb
 
         it 'should allow creation of temporary notifications', (done) ->
             @nh.createTemporary
                 text: 'test'
                 resource: {app: 'appname'}
-            , (err, response, result) ->
-                expect(result).to.have.property 'success'
+            , (err) ->
+                should.not.exist err
                 done()
 
-    describe 'createPersistent', (done) ->
+    describe 'Create persistent notification', (done) ->
+
+        before helpers.cleanDb
+        after helpers.cleanDb
 
         it 'should allow creation of persistent notifications', (done) ->
             @nh.createOrUpdatePersistent 'notifname',
                 text: 'test2'
                 resource: {app: 'appname'}
-            , (err, response, result) ->
-                expect(result).to.have.property 'ref', 'notifname'
-                expect(result).to.have.property 'app', 'appname'
+            , (err) ->
+                should.not.exist err
                 done()
 
-    describe 'destroy', (done) ->
+    describe 'Destroy notification', (done) ->
+
+        before helpers.cleanDb
+        before (done) ->
+            @nh.createOrUpdatePersistent 'notifnameother',
+                text: 'test2'
+                resource: {app: 'appname'}
+            , done
+        after helpers.cleanDb
 
         it 'should allow deletion of peristent notifications', (done) ->
-            @nh.destroy 'notifnameother', (err, response) ->
-                expect(response).to.have.property 'statusCode', 204
+            @nh.destroy 'notifnameother', (err) ->
+                should.not.exist err
                 done()

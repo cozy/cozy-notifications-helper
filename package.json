@@ -15,10 +15,12 @@
     "name": "Romain"
   },
   "dependencies": {
-    "request-json": "0.3.6"
+    "request-json": "0.4.4"
   },
   "readmeFilename": "README.md",
   "devDependencies": {
-    "chai": "~1.6.0"
+    "mocha": "1.14.0",
+    "chai": "1.8.1",
+    "coffeelint": "0.6.1"
   }
 }
