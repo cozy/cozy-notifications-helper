@@ -1,8 +1,8 @@
 {
   "name": "cozy-notifications-helper",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "description": "",
-  "main": "lib/server.js",
+  "main": "lib/main.js",
   "scripts": {
     "test": "cake tests",
     "prepublish": "cake build"
@@ -15,10 +15,13 @@
     "name": "Romain"
   },
   "dependencies": {
-    "request-json": "0.3.6"
+    "request-json": "0.4.4"
   },
   "readmeFilename": "README.md",
   "devDependencies": {
-    "chai": "~1.6.0"
+    "mocha": "1.14.0",
+    "chai": "1.8.1",
+    "coffeelint": "0.6.1",
+    "coffee-script": "*"
   }
 }

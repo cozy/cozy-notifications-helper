@@ -1,6 +1,10 @@
 # Notifications helper
 
-Helper library for interaction with cozy-home notification API
+[![Build Status](https://travis-ci.org/mycozycloud/cozy-notifications-helper.png?branch=master)](https://travis-ci.org/mycozycloud/cozy-notifications-helper)
+
+Helper library to ease interactions with notifications.
+
+**To use this module, your application must ask the permissions for "Notification"**.
 
 # About Cozy
 
