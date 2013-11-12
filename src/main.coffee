@@ -4,8 +4,7 @@ NotificationManager = require './notification-manager'
 
 module.exports = class NotificationsHelper
 
-    constructor: (@app, port=9103) ->
-        @client = new Client "http://localhost:#{port}/"
+    constructor: (@app) ->
 
     createTemporary: (params, callback) ->
         callback ?= ->
