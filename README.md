@@ -2,7 +2,7 @@
 
 Helper library to ease interactions with notifications.
 
-**To use this module, your application must ask the permissions for Notifiation"**.
+**To use this module, your application must ask the permissions for "Notifiation"**.
 
 # About Cozy
 
