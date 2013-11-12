@@ -1,5 +1,4 @@
 NotificationsHelper = require '../src/main.coffee'
-expect = require('chai').expect
 should = require('chai').should()
 
 helpers = require './helpers'
