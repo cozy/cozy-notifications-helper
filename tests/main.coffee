@@ -1,4 +1,4 @@
-NotificationsHelper = require '../src/server.coffee'
+NotificationsHelper = require '../src/main.coffee'
 expect = require('chai').expect
 should = require('chai').should()
 
