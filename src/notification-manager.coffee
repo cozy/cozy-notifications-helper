@@ -8,25 +8,30 @@ if process.env.NODE_ENV in authentifiedEnvs
 
 # Initialize the "all by app" request for persistent notification
 # createOrUpdate operations must be queued while request is being created
-initialized = false
 queue = []
-map = """
-    function (doc) {
-        if (doc.docType.toLowerCase() === "notification") {
-            if(doc.type === 'persistent') {
-                emit([doc.app, doc.ref], doc);
+initialized = false
+
+module.exports.initializeRequest = ->
+    initialized = false
+    map = """
+        function (doc) {
+            if (doc.docType.toLowerCase() === "notification") {
+                if(doc.type === 'persistent') {
+                    emit([doc.app, doc.ref], doc);
+                }
             }
         }
-    }
-"""
-client.put 'request/notification/byApps/', map: map, (err, res, body) ->
-    if err?
-        msg = "An error occurred while initializing notification module"
-        console.log "#{msg} -- #{err}"
-    else
-        initialized = true
-        # Process the waiting operations
-        module.exports._emptyQueue()
+    """
+    client.put 'request/notification/byApps/', map: map, (err, res, body) ->
+        if err?
+            msg = "An error occurred while initializing notification module"
+            console.log "#{msg} -- #{err}"
+        else
+            initialized = true
+            # Process the waiting operations
+            module.exports._emptyQueue()
+
+module.exports.initializeRequest()
 
 module.exports.manage = (notification, type, callback) ->
     notification.type = type
@@ -52,7 +57,12 @@ module.exports._createOrUpdate = (notification, callback) ->
         client.post 'request/notification/byApps/', params, (err, res, body) ->
             if err
                 callback err
-            else if not body or body.length is 0
+            else if body? and body.error? and res?.statusCode is 404
+                # during tests, the request can be destroy
+                module.exports._queueOperation 'createOrUpdate', notification, \
+                                                callback
+                module.exports.initializeRequest()
+            else if not body? or body.length is 0
                 module.exports._processCreation notification, callback
             else
                 id = body[0].value._id
