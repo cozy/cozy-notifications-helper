@@ -78,6 +78,8 @@ module.exports.destroy = (notification, callback) ->
         client.post 'request/notification/byApps/', params, (err, res, body) ->
             if err
                 callback err
+            else if body? and body.error?
+                callback body.error
             else if not body or body.length is 0
                 callback()
             else
