@@ -57,11 +57,14 @@ module.exports._createOrUpdate = (notification, callback) ->
         client.post 'request/notification/byApps/', params, (err, res, body) ->
             if err
                 callback err
-            else if body? and body.error? and res?.statusCode is 404
-                # during tests, the request can be destroy
-                module.exports._queueOperation 'createOrUpdate', notification, \
-                                                callback
-                module.exports.initializeRequest()
+            else if body? and body.error?
+                if res?.statusCode is 404
+                    # during tests, the request can be destroy
+                    module.exports._queueOperation 'createOrUpdate', notification, \
+                                                    callback
+                    module.exports.initializeRequest()
+                else
+                    callback body.error
             else if not body? or body.length is 0
                 module.exports._processCreation notification, callback
             else

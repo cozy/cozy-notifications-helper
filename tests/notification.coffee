@@ -107,11 +107,11 @@ describe "Notification Manager", ->
                     notif.type.should.equal 'persistent'
                     notif.app.should.equal @notif.app
                     notif.ref.should.equal @notif.ref
+                    @notif = notif
                     done()
 
-        describe "When the same notification is updated", ->
+            it "When the same notification is updated", (done) ->
 
-            before (done) ->
                 @notif.text = "new text"
                 NotificationManager.manage @notif, 'persistent', (err) =>
                     @err = err
