@@ -11,17 +11,16 @@
     "type": "git",
     "url": "https://github.com/mycozycloud/cozy-notifications-helper"
   },
-  "author": {
-    "name": "Romain"
-  },
+  "author": "Cozy Cloud <contact@cozycloud.cc> (http://cozycloud.cc)",
+  "license": "AGPL-3.0",
   "dependencies": {
     "request-json": "0.4.4"
   },
   "readmeFilename": "README.md",
   "devDependencies": {
-    "mocha": "1.14.0",
-    "chai": "1.8.1",
+    "mocha": "2.3.3",
+    "chai": "1.9.0",
     "coffeelint": "0.6.1",
-    "coffee-script": "*"
+    "coffee-script": "latest"
   }
 }
