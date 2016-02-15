@@ -1,6 +1,6 @@
 # Notifications helper
 
-[![Build Status](https://travis-ci.org/mycozycloud/cozy-notifications-helper.png?branch=master)](https://travis-ci.org/mycozycloud/cozy-notifications-helper)
+[![Build Status](https://travis-ci.org/cozy/cozy-notifications-helper.png?branch=master)](https://travis-ci.org/cozy/cozy-notifications-helper)
 
 Helper library to ease interactions with notifications.
 
@@ -14,7 +14,7 @@ easily on your server, a single place you control. This means you can manage
 efficiently your data while protecting your privacy without technical skills.
 
 More informations and hosting services on:
-https://cozycloud.cc
+https://cozy.io
 
 # Cozy on IRC
 
