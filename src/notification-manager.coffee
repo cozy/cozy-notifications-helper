@@ -1,5 +1,5 @@
-Client = require('request-json').JsonClient
-client = new Client "http://localhost:9101/"
+request = require('request-json-light')
+client = request.newClient "http://localhost:9101/"
 
 # Data System authentification
 authentifiedEnvs = ['test', 'production']
@@ -60,7 +60,8 @@ module.exports._createOrUpdate = (notification, callback) ->
             else if body? and body.error?
                 if res?.statusCode is 404
                     # during tests, the request can be destroy
-                    module.exports._queueOperation 'createOrUpdate', notification, \
+                    module.exports._queueOperation 'createOrUpdate',
+                                                    notification,
                                                     callback
                     module.exports.initializeRequest()
                 else

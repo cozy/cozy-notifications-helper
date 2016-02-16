@@ -1,5 +1,4 @@
 should = require('chai').should()
-Client = require('request-json').JsonClient
 helpers = require './helpers'
 clientDS = helpers.client
 

@@ -1,8 +1,8 @@
 should = require('chai').should()
 helpers = {}
 
-Client = require('request-json').JsonClient
-helpers.client = new Client "http://localhost:9101/"
+request = require('request-json-light')
+helpers.client = request.newClient "http://localhost:9101/"
 
 # Data System authentification
 authentifiedEnvs = ['test', 'production']
